@@ -1,0 +1,4 @@
+# Rendered output belongs in the project that asked for the figure, not here.
+*.png
+!technical-architecture/examples/icons/**/*.png
+.DS_Store
