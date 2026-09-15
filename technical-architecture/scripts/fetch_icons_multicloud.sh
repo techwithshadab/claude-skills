@@ -22,7 +22,7 @@ cd "$(dirname "$0")/../examples/icons"
 
 # Capture the optional Azure pack URL now: the GCP section below uses `set --`, which
 # overwrites the positional parameters.
-AZURE_PACK="${1:-https://arch-center.azureedge.net/icons/Azure_Public_Service_Icons_V19.zip}"
+AZURE_PACK="${1:-https://arch-center.azureedge.net/icons/Azure_Public_Service_Icons_V24.zip}"
 
 echo "product marks (Simple Icons)"
 for s in snowflake apacheairflow databricks apachespark apachekafka apacheflink apachehadoop \
@@ -91,4 +91,29 @@ else
   echo "  azure pack unavailable at $PACK (pass a current URL as \$1)"
 fi
 
-echo "done: $(ls *.svg 2>/dev/null | wc -l | tr -d ' ') marks, $(ls gcp/*.png 2>/dev/null | wc -l | tr -d ' ') gcp, $(ls azure/*.svg 2>/dev/null | wc -l | tr -d ' ') azure"
+echo "databricks product icons (official artwork, community-packaged)"
+mkdir -p databricks
+DB_BASE="https://raw.githubusercontent.com/oieduardorabelo/databricks-architecture-icons/main/icons/svg"
+for i in unity-catalog delta-lake ai-functions model-serving mlflow feature-store \
+         spark-declarative-pipelines lakeflow lakeflow-jobs databricks-sql sql-warehouse notebooks \
+         genie ai-bi-dashboards agent-bricks lakebase \
+         clean-rooms marketplace delta-sharing partner-connect \
+         auto-loader lakehouse-federation unity-catalog-semantics; do
+  curl -sfL -m 30 -o "databricks/$i.svg" "$DB_BASE/$i.svg" || echo "  MISSING databricks/$i"
+done
+
+echo "snowflake product icons (Snowflake artwork, unlicensed repo -- see SKILL.md)"
+mkdir -p snowflake
+SF_BASE="https://raw.githubusercontent.com/sfc-gh-jcrittenden/snowflake-icons/main"
+# Data_Engineering is deliberately absent: it is a 411 KB Illustrator illustration, not an icon.
+for i in Snowpark Snowpark_Containers Streamlit_in_Snowflake Cortex Horizon \
+         Iceberg_Tables Dynamic_Tables Marketplace Native_App \
+         Warehouse_Data Warehouse_Gen2 Warehouse_Adaptive Warehouse_Snowpark \
+         Security_Governance Sharing_Collaboration Copilot \
+         Simplify_Pipelines Snowflake_Trail \
+         Security Cloud Analytics; do
+  out=$(echo "$i" | tr 'A-Z' 'a-z')
+  curl -sfL -m 30 -o "snowflake/$out.svg" "$SF_BASE/Snowflake_ICON_$i.svg" || echo "  MISSING snowflake/$out"
+done
+
+echo "done: $(ls *.svg 2>/dev/null | wc -l | tr -d ' ') marks, $(ls gcp/*.png 2>/dev/null | wc -l | tr -d ' ') gcp, $(ls azure/*.svg 2>/dev/null | wc -l | tr -d ' ') azure, $(ls databricks/*.svg 2>/dev/null | wc -l | tr -d ' ') databricks, $(ls snowflake/*.svg 2>/dev/null | wc -l | tr -d ' ') snowflake"
