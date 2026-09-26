@@ -1,0 +1,32 @@
+{
+  "name": "techwithshadab-skills",
+  "version": "0.1.0",
+  "description": "Shadab Hussain's Claude Code skills: TDD, code review, bug diagnosis, domain modelling, grilling, architecture figures, and the Northwind AI Engineering course's session-check, cost-check and trace-replay.",
+  "author": {
+    "name": "Shadab Hussain",
+    "url": "https://github.com/techwithshadab"
+  },
+  "repository": "https://github.com/techwithshadab/claude-skills",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "skills",
+    "tdd",
+    "code-review",
+    "agents",
+    "architecture",
+    "course"
+  ],
+  "skills": [
+    "./tdd",
+    "./code-review",
+    "./diagnosing-bugs",
+    "./domain-modeling",
+    "./codebase-design",
+    "./grilling",
+    "./session-check",
+    "./cost-check",
+    "./trace-replay",
+    "./technical-architecture"
+  ]
+}
