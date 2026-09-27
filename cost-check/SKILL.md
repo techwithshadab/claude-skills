@@ -16,7 +16,7 @@ A deploy that nobody priced is a bill that nobody expected. This skill runs befo
 
 ## After a run
 
-1. AWS: `aws ce get-cost-and-usage` for the day, filtered to the account, or the Cost Explorer page; App Runner and Bedrock line items. GCP: the billing report for the project, Cloud Run and Vertex AI line items. Read the model spend from the service's `/metrics` (`nw_agent_cost_usd_total`, `nw_policy_spend_usd_total`).
+1. AWS: `aws ce get-cost-and-usage` for the day, filtered to the account, or the Cost Explorer page; Lambda, Secrets Manager and Bedrock line items. GCP: the billing report for the project, Cloud Run and Vertex AI line items. Read the model spend from the service's `/metrics` (`nw_agent_cost_usd_total`, `nw_policy_spend_usd_total`).
 2. Compare with the cost sheet's estimate for that run. If the measured figure differs by more than half, say so and propose the corrected line for `deploy/COSTS.md`.
 3. Remind the user of the stop and destroy commands for the tier, with the residual cost of each.
 
